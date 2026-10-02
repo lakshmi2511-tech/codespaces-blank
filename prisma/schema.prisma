@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Client {
+  id        Int       @id @default(autoincrement())
+  name      String
+  phone     String    @unique
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+}
+
+model Branch {
+  id        Int       @id @default(autoincrement())
+  name      String
+  location  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  artists   Artist[]
+  bookings  Booking[]
+}
+
+model Artist {
+  id        Int       @id @default(autoincrement())
+  name      String
+  branchId  Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  branch    Branch    @relation(fields: [branchId], references: [id])
+  bookings  Booking[]
+}
+
+model Service {
+  id        Int       @id @default(autoincrement())
+  name      String
+  duration  Int
+  price     Decimal
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+}
+
+model Booking {
+  id        Int           @id @default(autoincrement())
+  clientId  Int
+  artistId  Int
+  serviceId Int
+  branchId  Int
+  eventType String
+  eventDate DateTime
+  startTime DateTime
+  endTime   DateTime
+  location  String
+  status    BookingStatus @default(PENDING)
+  notes     String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  artist    Artist        @relation(fields: [artistId], references: [id])
+  branch    Branch        @relation(fields: [branchId], references: [id])
+  client    Client        @relation(fields: [clientId], references: [id])
+  service   Service       @relation(fields: [serviceId], references: [id])
+}
+
+model playing_with_neon {
+  id    Int    @id @default(autoincrement())
+  name  String
+  value Float? @db.Real
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+  CANCELLED
+  COMPLETED
+}
