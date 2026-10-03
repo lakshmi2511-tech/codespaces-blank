@@ -44,3 +44,9 @@ dist/
 .env
 
 /app/generated/prisma
+
+# AI/editor generated files
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
