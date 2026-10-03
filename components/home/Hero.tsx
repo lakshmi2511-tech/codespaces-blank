@@ -16,13 +16,19 @@ export default function Hero() {
         </p>
 
         <div className="mt-8 flex justify-center gap-4">
-          <button className="rounded-lg bg-black px-6 py-3 text-white">
+          <a
+            href="#booking"
+            className="rounded-lg bg-black px-6 py-3 text-white"
+          >
             Book an Appointment
-          </button>
+          </a>
 
-          <button className="rounded-lg border border-gray-300 bg-white px-6 py-3">
+          <a
+            href="#services"
+            className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-gray-900"
+          >
             Explore Services
-          </button>
+          </a>
         </div>
       </div>
     </section>

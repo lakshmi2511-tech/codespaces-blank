@@ -2,7 +2,7 @@ export default function Navbar() {
   return (
     <header className="border-b bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <h1 className="text-2xl font-bold">GlamSync</h1>
+        <h1 className="text-2xl font-bold text-gray-900">GlamSync</h1>
 
         <nav className="hidden gap-6 text-sm md:flex">
           <a href="#services">Services</a>
